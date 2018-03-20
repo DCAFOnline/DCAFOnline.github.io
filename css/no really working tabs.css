@@ -1,0 +1,74 @@
+/*
+    Theme Name: Techie Tabs
+    Theme URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+*/
+
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+.nav-tabs {
+  border-bottom: 1px solid #dddddd;
+}
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+}
+
+.nav-tabs > li > a {
+  color: #555555;
+  margin-top: 4px;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
+  line-height: 2.0825;
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  background-color: #eeeeee;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: #555555;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 0;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-bottom-color: transparent;
+  cursor: default;
+  outline: none;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+
+.nav-tabs > li > a:hover {
+  color: #555555;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 0;
+  background-color: #06bcf3;
+  border: 1px solid #dddddd;
+  border-bottom-color: transparent;
+  cursor: default;
+  outline: none;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
