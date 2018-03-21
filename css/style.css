@@ -936,18 +936,6 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: .8em; 
   }
 }
-@media (max-width: 375px) {
-  .block {
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-  h1, h2, h3, h4, h5, h6, p, body, li{ 
-    font-size: .5em; 
-  }
-  .table { 
-    font-size: .5em; 
-  }
-}
 
 /* ---- stats.js ---- */
 
