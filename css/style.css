@@ -46,8 +46,8 @@ h4 {
 .container {
     padding-top: 0px;
     padding-right: 15px;
-    padding-bottom: 15px;
-    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
 }
 .main-slider {
   margin-bottom :0px;
@@ -94,7 +94,7 @@ a {
 }
 
 section {
-  padding: 85px 0;
+  padding: 48px 0;
 }
 
 .card {
