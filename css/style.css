@@ -18,21 +18,39 @@ p {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 
+li {
+  line-height: 1.55;
+  color: #333;
+  font-size: 400;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+}
+
 h1 {
   font-size: 62px;
 }
 
 h2 {
-  font-size: 30px;
-  margin-bottom: 65px;
+  font-size: 48px;
+  margin-bottom: 48px;
 }
 
 h3 {
   font-size: 24px;
+  margin-bottom: 24px;
 }
 
 h4 {
   font-size: 18px;
+}
+
+.container {
+    padding-top: 0px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 0px;
+}
+.main-slider {
+  margin-bottom :0px;
 }
 
 /* ==================================================
