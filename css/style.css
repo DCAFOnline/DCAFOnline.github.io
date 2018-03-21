@@ -923,7 +923,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* ==================================================
   Responsive Styling
   ================================================== */
-/*
+
 @media (max-width: 768px) {
   .block {
     padding-left: 30px;
@@ -935,7 +935,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   .table { 
     font-size: .8em; 
   }
-}*/
+}
 
 /* ---- stats.js ---- */
 
