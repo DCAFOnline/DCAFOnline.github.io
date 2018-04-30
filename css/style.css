@@ -213,6 +213,13 @@ a:hover {
   padding: 0;
   margin: 0;
   max-height: 40px;
+ 
+}
+
+.my-logo img{
+  margin:12px 10px 10px 10px;
+  height: 38px;
+  width: 50px;
 }
 
 @media (max-width: 768px) {
@@ -220,14 +227,19 @@ a:hover {
     height: 50px;
   }
   #header #logo {
-    margin: 10px 0 0 0;
+    margin: 10px;
   }
   #header #logo h1 {
-    padding: 2px 0;
+    padding: 2px;
     font-size: 26px;
   }
   #header #logo img {
     max-height: 30px;
+  }
+  .my-logo img{
+    margin:7px 5px 5px 5px;
+    height: 28px;
+    width: 40px;
   }
 }
 
@@ -485,41 +497,6 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /* ==================================================
-  Stats Styling
-================================================== */
-.stats-row {
-  margin-top: 65px;
-}
-
-.stats-col .circle {
-  display: inline-block;
-  width: 160px;
-  height: 160px;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  color: #666;
-  border: 6px solid #199EB8;
-  border-radius: 50%;
-  padding: 55px 25px 0 25px;
-  position: relative;
-}
-
-.stats-col .circle .stats-no {
-  color: #fff;
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-  top: -25px;
-  right: -15px;
-  font-family: "Raleway", Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  background-color: #E04F00;
-  position: absolute;
-  border-radius: 50%;
-  font-weight: 700;
-}
-
-/* ==================================================
   Parallax Styling
   ================================================== */
 .block {
@@ -590,27 +567,32 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* ==================================================
   Call-to-action Styling
   ================================================== */
-.cta {
-  background-color: #199EB8;  
+.grey-bk {
+ /* background-color: #199EB8; */
+/*  background: rgba(0, 0, 0, 0.65);*/
+  background: #78B3BB;
   padding: 25px 0;
+  color:white;
 }
 
-.cta h2 {
-  margin-bottom: 5px;
+.grey-bk p,
+.grey-bk li {
+  color: white;
 }
 
-.cta h2,
-.cta p,
-.cta li {
-  color: #fff;
+.grey-bk h2 {
+  color:white;
+  margin-top:48px;
+  font-size: 48px;
+  margin-bottom: 48px;
 }
 
-.cta p {
+.grey-bk p {
   margin-bottom: 0;
   /*opacity: .75;*/
 }
 
-.cta .btn-ghost {
+.grey-bk .btn-ghost {
   position: relative;
   top: 13px;
 }
@@ -789,13 +771,19 @@ body.mobile-nav-active #mobile-nav-toggle {
   Contact Section
   ================================================== */
 #contact {
-  background: #f7f7f7;
+ /*  background: rgba(0, 0, 0, 0.65); */
+  background: #78B3BB;
   padding: 80px 0;
 }
 
 #contact h2 {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
-  color: #199EB8;
+  margin-top:10px;
+  color:white;
+}
+
+#contact p {
+  color:white;
 }
 
 #contact .info i {
