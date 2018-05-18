@@ -351,7 +351,12 @@ a:hover {
 
 .nav-menu ul li {
   background: #fff;
+  /*border-top: 1px solid #f4f4f4; */
   border-top: 1px solid #f4f4f4;
+  border-left: 1px solid #199EB8;
+  border-right: 1px solid #199EB8;
+  border-bottom: 1px solid #199EB8;
+  
 }
 
 .nav-menu ul li:first-child {
@@ -380,6 +385,7 @@ a:hover {
 .nav-menu ul ul {
   margin: 0;
 }
+
 
 /* Mobile Nav Toggle */
 #mobile-nav-toggle {
