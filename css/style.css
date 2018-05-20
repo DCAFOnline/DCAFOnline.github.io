@@ -70,7 +70,7 @@ a {
 .btn {
   background-color: #199EB8;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 800;
+  font-weight: 400;
   color: #fff;
   padding: 15px 45px;
   border-radius: 50px;
@@ -571,9 +571,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 /* ==================================================
-  Call-to-action Styling
+  More about us
   ================================================== */
-.grey-bk {
+.lightcyan-bk {
  /* background-color: #199EB8; */
 /*  background: rgba(0, 0, 0, 0.65);*/
   background: #78B3BB;
@@ -581,28 +581,61 @@ body.mobile-nav-active #mobile-nav-toggle {
   color:white;
 }
 
-.grey-bk p,
-.grey-bk li {
+.lightcyan-bk p,
+.lightcyan-bk li {
   color: white;
 }
 
-.grey-bk h2 {
+.lightcyan-bk h2 {
   color:white;
   margin-top:48px;
   font-size: 48px;
   margin-bottom: 48px;
 }
 
-.grey-bk p {
+.lightcyan-bk p {
   margin-bottom: 0;
   /*opacity: .75;*/
 }
 
-.grey-bk .btn-ghost {
+.lightcyan-bk .btn-ghost {
   position: relative;
   top: 13px;
 }
 
+/* ==================================================
+  Offerings Styling
+  ================================================== */
+  .grey-bk {
+    /* background-color: #199EB8; */
+   /*  background: rgba(0, 0, 0, 0.65);*/
+     background: rgba(0, 0, 0, 0.65);
+     padding: 25px 0;
+     color:white;
+   }
+   
+   .grey-bk p,
+   .grey-bk li {
+     color: white;
+   }
+   
+   .grey-bk h2 {
+     color:white;
+     margin-top:48px;
+     font-size: 48px;
+     margin-bottom: 48px;
+   }
+   
+   .grey-bk p {
+     margin-bottom: 0;
+     /*opacity: .75;*/
+   }
+   
+   .grey-bk .btn-ghost {
+     position: relative;
+     top: 13px;
+   }
+   
 /* ==================================================
   Portfolio Styling
   ================================================== */
