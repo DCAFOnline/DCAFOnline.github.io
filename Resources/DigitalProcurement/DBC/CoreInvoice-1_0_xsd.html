@@ -1,0 +1,1243 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for CoreInvoice-1.0.xsd</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_CoreInvoice-1.0.xsd', 
+				'properties_Invoice');
+var usedByBoxes= new Array('usedBy_InvoiceType');
+var sourceBoxes= new Array('source_Invoice', 
+				'source_InvoiceType');
+var instanceBoxes= new Array('instance_Invoice');
+var diagramBoxes= new Array('diagram_Invoice', 
+				'diagram_InvoiceType');
+var annotationBoxes= new Array('annotations_Invoice', 
+				'annotations_InvoiceType');
+var modelBoxes= new Array('model_Invoice', 
+				'model_InvoiceType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, instanceBoxes);" class="control" /></span><span class="globalControlName">Instances</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="CoreInvoice-1.0.xsd"></a><div class="componentTitle">Main schema <span class="qname">CoreInvoice-1.0.xsd</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CoreInvoice-1.0.xsd" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CoreInvoice-1.0.xsd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CoreInvoice-1.0.xsd" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">attribute form default</td>
+                                    <td><b>unqualified</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">element form default</td>
+                                    <td><b>qualified</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">version</td>
+                                    <td><b>2.1</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="Invoice"></a><div class="componentTitle">Element <span class="qname">Invoice</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_Invoice');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_Invoice" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">This element MUST be conveyed as the root element in any instance document based on this Schema expression</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_Invoice');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_Invoice" style="display:block"><img alt="Diagram" border="0" src="img/CoreInvoice-1_0_xsd_Element_Invoice.jpeg" usemap="#CoreInvoice-1_0_xsd_Element_Invoice" /><map name="CoreInvoice-1_0_xsd_Element_Invoice" id="CoreInvoice-1_0_xsd_Element_Invoice">
+                                 <area alt="UBL-CommonExtensionComponents-2_1_xsd.tmp#UBLExtensions" href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" coords="283,40,413,64" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#UBLVersionID" href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" coords="283,104,408,128" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#CustomizationID" href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" coords="283,194,425,218" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ProfileID" href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" coords="283,284,381,308" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ProfileExecutionID" href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" coords="283,374,434,398" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ID" href="UBL-CommonBasicComponents-2_1_xsd.html#ID" coords="283,464,347,488" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#CopyIndicator" href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" coords="283,567,412,591" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#IssueDate" href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" coords="283,657,388,681" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#DueDate" href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" coords="283,747,381,771" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#InvoiceTypeCode" href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" coords="283,837,428,861" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#Note" href="UBL-CommonBasicComponents-2_1_xsd.html#Note" coords="283,927,361,951" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#DocumentCurrencyCode" href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" coords="283,1017,469,1041" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#BuyerReference" href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" coords="283,1107,419,1131" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#InvoicePeriod" href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" coords="283,1197,407,1221" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#OrderReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" coords="283,1287,420,1311" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#DespatchDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" coords="283,1377,493,1401" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#ReceiptDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" coords="283,1454,482,1478" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#ContractDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" coords="283,1544,490,1568" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AdditionalDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" coords="283,1621,498,1645" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AccountingSupplierParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" coords="283,1698,468,1722" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AccountingCustomerParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" coords="283,1788,477,1812" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#PayeeParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" coords="283,1865,392,1889" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#Delivery" href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" coords="283,1955,378,1979" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#PaymentMeans" href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" coords="283,2045,414,2069" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AllowanceCharge" href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" coords="283,2135,428,2159" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#TaxTotal" href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" coords="283,2225,382,2249" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#LegalMonetaryTotal" href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" coords="283,2315,440,2339" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#InvoiceLine" href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" coords="283,2405,395,2429" />
+                                 <area alt="CoreInvoice-1_0_xsd.tmp#InvoiceType" href="CoreInvoice-1_0_xsd.html#InvoiceType" coords="180,3,295,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b><a href="CoreInvoice-1_0_xsd.html#InvoiceType" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" onclick="updatePageTitle('Schema documentation for CoreInvoice-1.0.xsd')">InvoiceType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_Invoice');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_Invoice" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>complex</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('model_Invoice');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_Invoice" style="display:block"><b><a href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonExtensionComponents-2.1.xsd')">UBLExtensions{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">UBLVersionID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CustomizationID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileExecutionID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ID</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CopyIndicator{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">IssueDate</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DueDate{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">InvoiceTypeCode</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#Note" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">Note*</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DocumentCurrencyCode{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">BuyerReference{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoicePeriod*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">OrderReference{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">DespatchDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ReceiptDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ContractDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AdditionalDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingSupplierParty</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingCustomerParty</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PayeeParty{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">Delivery*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PaymentMeans*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AllowanceCharge*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">TaxTotal*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">LegalMonetaryTotal</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoiceLine+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingCustomerParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingSupplierParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AdditionalDocumentReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AllowanceCharge</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">BuyerReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ContractDocumentReference</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CopyIndicator</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CustomizationID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">Delivery</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">DespatchDocumentReference</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DocumentCurrencyCode</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DueDate</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoiceLine</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoicePeriod</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">InvoiceTypeCode</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">IssueDate</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">LegalMonetaryTotal</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#Note" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">Note</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">OrderReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PayeeParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PaymentMeans</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileExecutionID</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ReceiptDocumentReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">TaxTotal</a></b>, <b><a href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonExtensionComponents-2.1.xsd')">UBLExtensions</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">UBLVersionID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Instance</b></div>
+                           <div class="floatRight"><input id="button_instance_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('instance_Invoice');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="instance_Invoice" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;Invoice</span><span class="tT"> </span><span class="tAN">xmlns=</span><span class="tAV">"urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"</span><span class="tT"> </span><span class="tAN">xmlns:ext=</span><span class="tAV">"urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"</span><span class="tT"> </span><span class="tAN">xmlns:cbc=</span><span class="tAV">"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"</span><span class="tT"> </span><span class="tAN">xmlns:cac=</span><span class="tAV">"urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ext:UBLExtensions</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/ext:UBLExtensions&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:UBLVersionID</span><span class="tT"> </span><span class="tAN">schemeAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeDataURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeVersionID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:UBLVersionID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:CustomizationID</span><span class="tT"> </span><span class="tAN">schemeAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeDataURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeVersionID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:CustomizationID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:ProfileID</span><span class="tT"> </span><span class="tAN">schemeAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeDataURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeVersionID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:ProfileID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:ProfileExecutionID</span><span class="tT"> </span><span class="tAN">schemeAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeDataURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeVersionID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:ProfileExecutionID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:ID</span><span class="tT"> </span><span class="tAN">schemeAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeDataURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">schemeVersionID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cbc:ID&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:CopyIndicator</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:CopyIndicator&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:IssueDate</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cbc:IssueDate&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:DueDate</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:DueDate&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:InvoiceTypeCode</span><span class="tT"> </span><span class="tAN">languageID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listSchemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listVersionID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">name=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cbc:InvoiceTypeCode&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:Note</span><span class="tT"> </span><span class="tAN">languageID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">languageLocaleID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cbc:Note&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:DocumentCurrencyCode</span><span class="tT"> </span><span class="tAN">languageID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listAgencyID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listAgencyName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listName=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listSchemeURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listURI=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">listVersionID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">name=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:DocumentCurrencyCode&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cbc:BuyerReference</span><span class="tT"> </span><span class="tAN">languageID=</span><span class="tAV">""</span><span class="tT"> </span><span class="tAN">languageLocaleID=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cbc:BuyerReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:InvoicePeriod</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:InvoicePeriod&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:OrderReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cac:OrderReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:DespatchDocumentReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:DespatchDocumentReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:ReceiptDocumentReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:ReceiptDocumentReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:ContractDocumentReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:ContractDocumentReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:AdditionalDocumentReference</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:AdditionalDocumentReference&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:AccountingSupplierParty</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cac:AccountingSupplierParty&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:AccountingCustomerParty</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cac:AccountingCustomerParty&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:PayeeParty</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,1}</span><span class="tEl">&lt;/cac:PayeeParty&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:Delivery</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:Delivery&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:PaymentMeans</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:PaymentMeans&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:AllowanceCharge</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:AllowanceCharge&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:TaxTotal</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{0,unbounded}</span><span class="tEl">&lt;/cac:TaxTotal&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:LegalMonetaryTotal</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,1}</span><span class="tEl">&lt;/cac:LegalMonetaryTotal&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;cac:InvoiceLine</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">{1,unbounded}</span><span class="tEl">&lt;/cac:InvoiceLine&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/Invoice&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_Invoice" type="image" src="img/btM.gif" value="-" onclick="switchState('source_Invoice');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_Invoice" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:element</span><span class="tAN"> name=</span><span class="tAV">"Invoice"</span><span class="tAN"> type=</span><span class="tAV">"InvoiceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">This element MUST be conveyed as the root element in any instance document based on this Schema expression</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:element&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="InvoiceType"></a><div class="componentTitle">Complex Type <span class="qname">InvoiceType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_InvoiceType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_InvoiceType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_InvoiceType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Core Invoice</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+</span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ABIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Details</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A document used to request payment.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_InvoiceType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_InvoiceType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_InvoiceType" style="display:block"><img alt="Diagram" border="0" src="img/CoreInvoice-1_0_xsd_Complex_Type_InvoiceType.jpeg" usemap="#CoreInvoice-1_0_xsd_Complex_Type_InvoiceType" /><map name="CoreInvoice-1_0_xsd_Complex_Type_InvoiceType" id="CoreInvoice-1_0_xsd_Complex_Type_InvoiceType">
+                                 <area alt="UBL-CommonExtensionComponents-2_1_xsd.tmp#UBLExtensions" href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" coords="259,0,389,24" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#UBLVersionID" href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" coords="259,64,384,88" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#CustomizationID" href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" coords="259,154,401,178" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ProfileID" href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" coords="259,244,357,268" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ProfileExecutionID" href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" coords="259,334,410,358" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#ID" href="UBL-CommonBasicComponents-2_1_xsd.html#ID" coords="259,424,323,448" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#CopyIndicator" href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" coords="259,527,388,551" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#IssueDate" href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" coords="259,617,364,641" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#DueDate" href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" coords="259,707,357,731" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#InvoiceTypeCode" href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" coords="259,797,404,821" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#Note" href="UBL-CommonBasicComponents-2_1_xsd.html#Note" coords="259,887,337,911" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#DocumentCurrencyCode" href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" coords="259,977,445,1001" />
+                                 <area alt="UBL-CommonBasicComponents-2_1_xsd.tmp#BuyerReference" href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" coords="259,1067,395,1091" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#InvoicePeriod" href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" coords="259,1157,383,1181" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#OrderReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" coords="259,1247,396,1271" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#DespatchDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" coords="259,1337,469,1361" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#ReceiptDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" coords="259,1414,458,1438" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#ContractDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" coords="259,1504,466,1528" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AdditionalDocumentReference" href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" coords="259,1581,474,1605" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AccountingSupplierParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" coords="259,1658,444,1682" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AccountingCustomerParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" coords="259,1748,453,1772" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#PayeeParty" href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" coords="259,1825,368,1849" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#Delivery" href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" coords="259,1915,354,1939" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#PaymentMeans" href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" coords="259,2005,390,2029" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#AllowanceCharge" href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" coords="259,2095,404,2119" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#TaxTotal" href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" coords="259,2185,358,2209" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#LegalMonetaryTotal" href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" coords="259,2275,416,2299" />
+                                 <area alt="UBL-CommonAggregateComponents-2_1_xsd.tmp#InvoiceLine" href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" coords="259,2365,371,2389" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_InvoiceType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_InvoiceType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_InvoiceType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="CoreInvoice-1_0_xsd.html#Invoice" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" onclick="updatePageTitle('Schema documentation for CoreInvoice-1.0.xsd')">Invoice</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_InvoiceType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_InvoiceType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_InvoiceType" style="display:block"><b><a href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonExtensionComponents-2.1.xsd')">UBLExtensions{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">UBLVersionID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CustomizationID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileExecutionID{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ID</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CopyIndicator{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">IssueDate</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DueDate{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">InvoiceTypeCode</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#Note" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">Note*</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DocumentCurrencyCode{0,1}</a></b> , <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">BuyerReference{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoicePeriod*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">OrderReference{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">DespatchDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ReceiptDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ContractDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AdditionalDocumentReference*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingSupplierParty</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingCustomerParty</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PayeeParty{0,1}</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">Delivery*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PaymentMeans*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AllowanceCharge*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">TaxTotal*</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">LegalMonetaryTotal</a></b> , <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoiceLine+</a></b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Children</b></td>
+                        <td><b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingCustomerParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingCustomerParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AccountingSupplierParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AccountingSupplierParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AdditionalDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AdditionalDocumentReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#AllowanceCharge" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">AllowanceCharge</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#BuyerReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">BuyerReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ContractDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ContractDocumentReference</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CopyIndicator" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CopyIndicator</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#CustomizationID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">CustomizationID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#Delivery" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">Delivery</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#DespatchDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">DespatchDocumentReference</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DocumentCurrencyCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DocumentCurrencyCode</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#DueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">DueDate</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoiceLine" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoiceLine</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#InvoicePeriod" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">InvoicePeriod</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#InvoiceTypeCode" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">InvoiceTypeCode</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#IssueDate" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">IssueDate</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#LegalMonetaryTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">LegalMonetaryTotal</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#Note" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">Note</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#OrderReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">OrderReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PayeeParty" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PayeeParty</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#PaymentMeans" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">PaymentMeans</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileExecutionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileExecutionID</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#ProfileID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">ProfileID</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#ReceiptDocumentReference" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">ReceiptDocumentReference</a></b>, <b><a href="UBL-CommonAggregateComponents-2_1_xsd.html#TaxTotal" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonAggregateComponents-2.1.xsd')">TaxTotal</a></b>, <b><a href="UBL-CommonExtensionComponents-2_1_xsd.html#UBLExtensions" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonExtensionComponents-2.1.xsd')">UBLExtensions</a></b>, <b><a href="UBL-CommonBasicComponents-2_1_xsd.html#UBLVersionID" target="mainFrame" title="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" onclick="updatePageTitle('Schema documentation for UBL-CommonBasicComponents-2.1.xsd')">UBLVersionID</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_InvoiceType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_InvoiceType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_InvoiceType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xsd:complexType</span><span class="tAN"> name=</span><span class="tAV">"InvoiceType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Core Invoice</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ABIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Details</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A document used to request payment.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xsd:sequence</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"ext:UBLExtensions"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A container for all extensions present in the document.</span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:UBLVersionID"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">UBL Version</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. UBL Version Identifier. Identifier</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifies the earliest version of the UBL 2 schema for this document type that defines all of the elements that might be encountered in the current instance.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">UBL Version Identifier</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Examples</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">2.0.5</span><span class="tEl">&lt;/ccts:Examples&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:CustomizationID"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Council Implementation</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Customization Identifier. Identifier</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifies a user-defined customization of UBL for a specific use.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Customization Identifier</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Examples</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">NES</span><span class="tEl">&lt;/ccts:Examples&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:ProfileID"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Council Profile</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Profile Identifier. Identifier</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifies a user-defined profile of the customization of UBL being used.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Profile Identifier</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Examples</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BasicProcurementProcess</span><span class="tEl">&lt;/ccts:Examples&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:ProfileExecutionID"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Transaction</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Profile Execution Identifier. Identifier</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifies an instance of executing a profile, to associate all transactions in a collaboration.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Profile Execution Identifier</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Examples</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BPP-1001</span><span class="tEl">&lt;/ccts:Examples&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:ID"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Identifier</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">An identifier for this document, assigned by the sender.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Identifier. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AlternativeBusinessTerms</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Number</span><span class="tEl">&lt;/ccts:AlternativeBusinessTerms&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:CopyIndicator"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Copy Indicator</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Copy_ Indicator. Indicator</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicates whether this document is a copy (true) or not (false).</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Copy</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicator</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicator</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Indicator. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:IssueDate"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Issue Date</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Issue Date. Date</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The date, assigned by the sender, on which this document was issued.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Issue Date</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Date</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Date. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AlternativeBusinessTerms</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Date</span><span class="tEl">&lt;/ccts:AlternativeBusinessTerms&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:DueDate"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Due Date</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Due Date. Date</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The date on which Invoice is due.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Due Date</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Date</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Date. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:InvoiceTypeCode"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Type Code</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Invoice Type Code. Code</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A code signifying the type of the Invoice.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Type Code</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Code</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataTypeQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Type</span><span class="tEl">&lt;/ccts:DataTypeQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Type_ Code. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:Note"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Description</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Note. Text</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Free-form text pertinent to this document, conveying information that is not contained explicitly in other structures.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Note</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:DocumentCurrencyCode"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Currency</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Document_ Currency Code. Code</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A code signifying the default currency for this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Currency Code</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Code</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataTypeQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Currency</span><span class="tEl">&lt;/ccts:DataTypeQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Currency_ Code. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cbc:BuyerReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Buyer Accounting Reference</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">BBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Buyer_ Reference. Text</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference provided by the buyer used for internal routing of the document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Buyer</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DataType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Text. Type</span><span class="tEl">&lt;/ccts:DataType&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:InvoicePeriod"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Period</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Invoice_ Period. Period</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A period to which the Invoice applies.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Period</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Period</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Period</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:OrderReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Purchase Order Reference</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Order Reference</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference to the Order with which this Invoice is associated.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Order Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Order Reference</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Order Reference</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:DespatchDocumentReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Despatch Document Reference</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Despatch_ Document Reference. Document Reference</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference to a Despatch Advice associated with this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Despatch</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:ReceiptDocumentReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Receipt Document Reference</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Receipt_ Document Reference. Document Reference</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference to a Receipt Advice associated with this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Receipt</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:ContractDocumentReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Contract Reference</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Contract_ Document Reference. Document Reference</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference to a contract associated with this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Contract</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:AdditionalDocumentReference"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Related Invoice</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Additional_ Document Reference. Document Reference</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A reference to an additional document associated with this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Additional</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Document Reference</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:AccountingSupplierParty"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Accounts Receivable</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Accounting_ Supplier Party. Supplier Party</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The accounting supplier party.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Accounting</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Supplier Party</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Supplier Party</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Supplier Party</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:AccountingCustomerParty"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Accounts Payable</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Accounting_ Customer Party. Customer Party</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The accounting customer party.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Accounting</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Customer Party</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Customer Party</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Customer Party</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:PayeeParty"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payee</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Payee_ Party. Party</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The payee.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payee</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Party</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Party</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Party</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:Delivery"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Delivery</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Delivery</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A delivery associated with this document.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Delivery</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Delivery</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Delivery</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:PaymentMeans"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payment Means</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Payment Means</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Expected means of payment.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payment Means</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payment Means</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Payment Means</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:AllowanceCharge"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Allowance or Charge</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Allowance Charge</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A discount or charge that applies to a price component.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Allowance Charge</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Allowance Charge</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Allowance Charge</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:TaxTotal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"0"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Tax Total</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Tax Total</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The total amount of a specific type of tax.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">0..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Tax Total</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Tax Total</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Tax Total</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:LegalMonetaryTotal"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"1"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Total Amount</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Legal_ Monetary Total. Monetary Total</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The total amount payable on the Invoice, including Allowances, Charges, and Taxes.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTermQualifier</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Legal</span><span class="tEl">&lt;/ccts:PropertyTermQualifier&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Monetary Total</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Monetary Total</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Monetary Total</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xsd:element</span><span class="tAN"> ref=</span><span class="tAV">"cac:InvoiceLine"</span><span class="tAN"> minOccurs=</span><span class="tAV">"1"</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xsd:annotation</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xsd:documentation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;dbc:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;dbc:SemanticElement</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Line</span><span class="tEl">&lt;/dbc:SemanticElement&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/dbc:Component&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;ccts:Component</span><span class="tEl">&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ComponentType</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">ASBIE</span><span class="tEl">&lt;/ccts:ComponentType&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:DictionaryEntryName</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice. Invoice Line</span><span class="tEl">&lt;/ccts:DictionaryEntryName&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Definition</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A line describing an invoice item.</span><span class="tEl">&lt;/ccts:Definition&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:Cardinality</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">1..n</span><span class="tEl">&lt;/ccts:Cardinality&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:ObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice</span><span class="tEl">&lt;/ccts:ObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:PropertyTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Line</span><span class="tEl">&lt;/ccts:PropertyTerm&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:AssociatedObjectClass</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Line</span><span class="tEl">&lt;/ccts:AssociatedObjectClass&gt;</span><span class="tI">
+            </span><span class="tEl">&lt;ccts:RepresentationTerm</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Invoice Line</span><span class="tEl">&lt;/ccts:RepresentationTerm&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;/ccts:Component&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xsd:documentation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xsd:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xsd:element&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xsd:sequence&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xsd:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
