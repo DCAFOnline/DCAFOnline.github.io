@@ -4,7 +4,7 @@
                      http://docs.oasis-open.org/ubl/os-UBL-2.2/
   Release Date:      09 July 2018
   Module:            xsd/common/UBL-CommonAggregateComponents-2.2.xsd
-  Generated on:      2019-03-20 09:53z
+  Generated on:      2019-04-06 00:06z
   Copyright (c) OASIS Open 2018. All Rights Reserved.
 -->
 <xsd:schema xmlns="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
@@ -4255,6 +4255,22 @@
                      <ccts:PropertyTerm>Tax Amount</ccts:PropertyTerm>
                      <ccts:RepresentationTerm>Amount</ccts:RepresentationTerm>
                      <ccts:DataType>Amount. Type</ccts:DataType>
+                  </ccts:Component>
+               </xsd:documentation>
+            </xsd:annotation>
+         </xsd:element>
+         <xsd:element ref="cbc:CalculationSequenceNumeric" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+               <xsd:documentation>
+                  <ccts:Component>
+                     <ccts:ComponentType>BBIE</ccts:ComponentType>
+                     <ccts:DictionaryEntryName>Tax Subtotal. Calculation Sequence. Numeric</ccts:DictionaryEntryName>
+                     <ccts:Definition>The number of this tax subtotal in the sequence of subtotals corresponding to the order in which multiple taxes are applied. If all taxes are applied to the same taxable amount (i.e., their order of application is inconsequential), then CalculationSequenceNumeric is 1 for all tax subtotals applied to a given amount.</ccts:Definition>
+                     <ccts:Cardinality>0..1</ccts:Cardinality>
+                     <ccts:ObjectClass>Tax Subtotal</ccts:ObjectClass>
+                     <ccts:PropertyTerm>Calculation Sequence</ccts:PropertyTerm>
+                     <ccts:RepresentationTerm>Numeric</ccts:RepresentationTerm>
+                     <ccts:DataType>Numeric. Type</ccts:DataType>
                   </ccts:Component>
                </xsd:documentation>
             </xsd:annotation>
